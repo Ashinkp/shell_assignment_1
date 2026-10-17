@@ -35,5 +35,5 @@ df -h
 echo ""
 echo "=================================="
 echo "    MONITORING COMPLETED"
-echo "==============
+echo "=============="
 
