@@ -1,19 +1,36 @@
 #!/bin/bash
-#############
-#############
-#Author: Ashin
-#Date: 16/10/2026
-#version: v1
+#############################
+# Author: Ashin
+# Date: 17/10/2026
+# Version: v2
+#############################
+
 echo "=================================="
-echo "       SYSTEM MONITORING"
+echo "        SYSTEM MONITORING"
+echo "  Date : $(date '+%Y-%m-%d %H:%M:%S')"
+echo "  Host : $(hostname)"
 echo "=================================="
 
-# 1. CPU Usage
+echo ""
+echo "===== UPTIME ====="
+uptime -p
+
 echo ""
 echo "===== CPU USAGE ====="
 top -bn1 | grep "Cpu(s)"
 
-# 2. Running Services
+echo ""
+echo "===== MEMORY USAGE ====="
+free -h
+
+echo ""
+echo "===== DISK USAGE ====="
+df -h
+
+echo ""
+echo "===== TOP 5 PROCESSES (BY MEMORY) ====="
+ps aux --sort=-%mem | head -6
+
 echo ""
 echo "===== RUNNING SERVICES ====="
 if command -v systemctl >/dev/null 2>&1; then
@@ -22,18 +39,8 @@ else
     service --status-all 2>/dev/null
 fi
 
-# 3. Memory Usage
-echo ""
-echo "===== MEMORY USAGE ====="
-free -h
-
-# 4. Disk Usage
-echo ""
-echo "===== DISK USAGE ====="
-df -h
-
 echo ""
 echo "=================================="
-echo "    MONITORING COMPLETED"
-echo "=============="
-
+echo "     MONITORING COMPLETED"
+echo "=================================="
+echo ""
